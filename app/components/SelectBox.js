@@ -27,7 +27,8 @@ export default function App({
             Authorization: `Bearer ${anon_key}`,
           },
         });
-        setMusicMap(response.data);
+        const sortedMusicMap = response.data.sort((a, b) => a.musicName.localeCompare(b.musicName));
+        setMusicMap(sortedMusicMap);
         setIsComplete(true);
       } catch (error) {
         setError(error);

@@ -17,7 +17,7 @@ export default function App({postToPlayerlist, url, musicName}) {
   return (
     <>
       <Button color="primary" className="w-1/2 md:w-1/5" onPress={()=>{onOpen();postToPlayerlist(url, musicName);}} >
-        제출하기
+        전송
       </Button>
       
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="static" className="inset-0 w-2/3 h-1/4 items-center justify-center fixed md:relative">

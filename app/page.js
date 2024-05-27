@@ -1,113 +1,188 @@
-import Image from 'next/image'
+"use client";
+import Image from "next/image";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import SelectBox from "./components/SelectBox";
+import InputUrl from "./components/InputUrl";
+import Button from "./components/Button";
 
 export default function Home() {
+  const [musicSource, setMusicSource] = useState("음원");
+  const [url,setUrl] = useState('')
+  const [isComplete, setIsComplete] = useState(false);
+  let supabaseUrl = 'https://kdzsitzpnhddoodzimyv.supabase.co';
+  let anonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkenNpdHpwbmhkZG9vZHppbXl2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTY0MzgxOTYsImV4cCI6MjAzMjAxNDE5Nn0.ykDZPfy25lwUsBml4rM1Cobz8q1ASWK-uMsa5BmnNH0';
+
+  async function postToPlayerlist(url, musicName) {
+    try {
+      const response = await axios.post(
+        `${supabaseUrl}/rest/v1/playerlist`,
+        { url: url, musicName: musicName },
+        {
+          headers: {
+            apikey: anonKey,
+            Authorization: `Bearer ${anonKey}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      console.log('Post successful:', response.status);
+    } catch (error) {
+      console.error('Error posting to playerlist:', error);
+    }
+  }
+
+
+  
+
+  
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="main-section pd-bottom-64px">
+      <div className="container-default w-container">
+        <div className="grid-2-columns main-dashboard-grid">
+          <div
+            id="tables"
+            data-w-id="8f2a9830-51b8-ac00-e253-f07f9f4c0a57"
+            style={{ opacity: 1 }}
+            className="pd-top-24px w-node-_8f2a9830-51b8-ac00-e253-f07f9f4c0a57-856bbfe2"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div
+              id="inputs"
+              data-w-id="3e40ce4e-5a27-a0d4-cc3e-276ce0c1bee6"
+              style={{ opacity: 1 }}
+              className="pd-top-24px"
+            >
+              <div id="dropdowns">
+                <div className="component-card-badge-top-wrapper">
+                  <div className="component-card-badge-top">제출하기</div>
+                </div>
+                <div className="card component-card">
+                  {/* <div className="grid-3-columns">
+                    <div
+                      id="w-node-_3e40ce4e-5a27-a0d4-cc3e-276ce0c1beed-856bbfe2"
+                      className="inner-container _244px _100-tablet"
+                    >
+                      <div className="div-block">
+                        <div
+                          data-hover="true"
+                          data-delay="0"
+                          data-w-id="f18a1fce-0ff6-7565-5f48-1e0735f5d8ed"
+                          className="width-100 w-dropdown"
+                        >
+                          
+                          <div
+                            className="dropdown-toggle w-dropdown-toggle"
+                            style={{
+                              display: "flex",
+                              alignItems: "center",
+                              height: 50,
+                            }}
+                          >
+                            <div
+                              id="dropdown-text"
+                              className="text-100 medium"
+                              style={{ marginRight: "8px" }}
+                            >
+                              {musicSource}
+                            </div>
+                            <div className="line-rounded-icon dropdown-icon"></div>
+                          </div>
+                          <nav className="dropdown-list w-dropdown-list">
+                            <div
+                              className="card border-radius-6px"
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              <div
+                                onClick={() => {
+                                  setMusicSource("봄");
+                                }}
+                                className="dropdown-link-wrapper w-inline-block"
+                              >
+                                <div>봄</div>
+                              </div>
+                              <div
+                                onClick={() => {
+                                  setMusicSource("여름");
+                                }}
+                                className="dropdown-link-wrapper w-inline-block"
+                              >
+                                <div>여름</div>
+                              </div>
+                              <div
+                                onClick={() => {
+                                  setMusicSource("가을");
+                                }}
+                                className="dropdown-link-wrapper w-inline-block"
+                              >
+                                <div>가을</div>
+                              </div>
+                              <div
+                                onClick={() => {
+                                  setMusicSource("겨울");
+                                }}
+                                className="dropdown-link-wrapper w-inline-block"
+                              >
+                                <div>겨울</div>
+                              </div>
+                            </div>
+                          </nav>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      id="w-node-_3e40ce4e-5a27-a0d4-cc3e-276ce0c1bef2-856bbfe2"
+                      className="mg-bottom-0 w-form"
+                    >
+                      <div
+                        id="email-form"
+                        name="email-form"
+                        data-name="Email Form"
+                        method="get"
+                        data-wf-page-id="66509fbfc74b2775856bbfe2"
+                        data-wf-element-id="3e40ce4e-5a27-a0d4-cc3e-276ce0c1bef3"
+                      >
+                        <div className="div-block-2">
+                          <div>
+                            <input
+                              className="input text-field w-input"
+                              style={{ height: 50 }}
+                              maxlength="256"
+                              name="Name"
+                              data-name="Name"
+                              placeholder="주소"
+                              type="text"
+                              id="Name-3"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="success-message w-form-done">
+                        <div>Thank you! Your submission has been received!</div>
+                      </div>
+                      <div className="error-message w-form-fail">
+                        <div>
+                          Oops! Something went wrong while submitting the form.
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
+                  <div className="flex flex-col items-center gap-y-5 w-full md:flex-row md:gap-x-[5%]">
+                    <SelectBox isComplete={isComplete} setIsComplete={setIsComplete} musicSource={musicSource} setMusicSource={setMusicSource}></SelectBox>
+                    <InputUrl url={url} setUrl={setUrl}></InputUrl>
+                  </div>
+                  <div className="flex justify-center items-center mt-10">
+                    <Button postToPlayerlist={postToPlayerlist} url={url} musicName={musicSource}></Button>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }

@@ -138,48 +138,12 @@ export default function RootLayout({ children }) {
                         className="social-links-container"
                         style={{ opacity: 1 }}
                       >
-                        <a
-                          href="https://www.facebook.com/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
-                        <a
-                          href="https://www.twitter.com/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
-                        <a
-                          href="https://www.linkedin.com/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
-                        <a
-                          href="https://www.youtube.com/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
-                        <a
-                          href="https://dribbble.com/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
-                        <a
-                          href="https://www.behance.net/"
-                          target="_blank"
-                          className="social-circle-link"
-                        >
-                          
-                        </a>
+                        <div>
+                          대표 : 배영근
+                        </div>
+                        <div>
+                          e-mail:deullim.ent@gmail.com
+                        </div>
                       </div>
                     </div>
                   </div>

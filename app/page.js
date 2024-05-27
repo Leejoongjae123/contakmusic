@@ -27,6 +27,7 @@ export default function Home() {
         }
       );
       console.log('Post successful:', response.status);
+      setIsComplete(true);
     } catch (error) {
       console.error('Error posting to playerlist:', error);
     }
@@ -54,7 +55,7 @@ export default function Home() {
             >
               <div id="dropdowns">
                 <div className="component-card-badge-top-wrapper">
-                  <div className="component-card-badge-top">음원정보</div>
+                  <div className="component-card-badge-top">제출하기</div>
                 </div>
                 <div className="card component-card">
                   {/* <div className="grid-3-columns">

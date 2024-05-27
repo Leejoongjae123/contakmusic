@@ -135,14 +135,80 @@ export default function RootLayout({ children }) {
                     >
                       <div>Copyright © Contakmusic | 2024</div>
                       <div
-                        className="social-links-container"
+                        className="flex justify-center items-center"
                         style={{ opacity: 1 }}
                       >
-                        <div>
-                          대표 : 배영근
-                        </div>
-                        <div>
-                          e-mail:deullim.ent@gmail.com
+                        {/* <a
+                        href="https://www.twitter.com/"
+                        target="_blank"
+                        className="social-circle-link"
+                      >
+                        
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/"
+                        target="_blank"
+                        className="social-circle-link"
+                      >
+                        
+                      </a>
+                      <a
+                        href="https://www.youtube.com/"
+                        target="_blank"
+                        className="social-circle-link"
+                      >
+                        
+                      </a>
+                      <a
+                        href="https://dribbble.com/"
+                        target="_blank"
+                        className="social-circle-link"
+                      >
+                        
+                      </a>
+                      <a
+                        href="https://www.behance.net/"
+                        target="_blank"
+                        className="social-circle-link"
+                      >
+                        
+                      </a> */}
+                        
+                        <div >
+                          <a
+                            href="https://www.instagram.com/contaktmusic?igsh=MTdjMmt6aTdwY3RrOA=="
+                            target="_blank"
+                            className="social-circle-link"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="18"
+                              height="18"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="feather feather-instagram"
+                            >
+                              <rect
+                                x="2"
+                                y="2"
+                                width="20"
+                                height="20"
+                                rx="5"
+                                ry="5"
+                              ></rect>
+                              <path d="M16 11.37a4 4 0 1 1-4.73-4.73 4 4 0 0 1 4.73 4.73z"></path>
+                              <line
+                                x1="17.5"
+                                y1="6.5"
+                                x2="17.51"
+                                y2="6.5"
+                              ></line>
+                            </svg>
+                          </a>
                         </div>
                       </div>
                     </div>
